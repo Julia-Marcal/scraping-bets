@@ -6,13 +6,14 @@
   "repository": "https://github.com/Julia-Marcal/scrapping-bets.git",
   "author": "Julia-Marcal <anajulia.05marcal@gmail.com>",
   "license": "Apache License 2.0",
+  "scripts": {
+    "dev": "ts-node src/index.ts"
+  },
   "devDependencies": {
-    "@types/jsdom": "^21.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "axios": "^1.4.0",
-    "jsdom": "^22.0.0"
+    "puppeteer": "^20.1.2"
   }
 }
