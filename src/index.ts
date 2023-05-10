@@ -1,6 +1,5 @@
 import { bestGames } from './Leagues'
 import { enterAccount} from './enterAccount'
-const { connectBrowser } = require('./browser');
 
 const allowed_leagues: string[] = [
   'Brasileiro Série A',
@@ -17,7 +16,6 @@ const allowed_leagues: string[] = [
 ]
 
 async function run() {
-  await connectBrowser();
   await enterAccount()
   await bestGames(allowed_leagues)
 }
