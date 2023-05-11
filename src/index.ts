@@ -1,5 +1,5 @@
-import { bestGames } from './Leagues'
-import { enterAccount} from './enterAccount'
+import { bestLeagues } from './Leagues'
+import { enterAccount } from './enterAccount'
 
 const allowed_leagues: string[] = [
   'Brasileiro Série A',
@@ -17,6 +17,8 @@ const allowed_leagues: string[] = [
 
 async function run() {
   await enterAccount()
-  await bestGames(allowed_leagues)
+  await Promise.all([
+    await bestLeagues(allowed_leagues)
+  ])
 }
 run()
