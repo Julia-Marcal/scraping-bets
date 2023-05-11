@@ -1,1 +1,1 @@
-# scrapping bets
+# scraping bets
