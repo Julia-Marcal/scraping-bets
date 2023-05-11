@@ -1,16 +1,17 @@
 const pup = require('puppeteer')
 require('dotenv').config()
 
-
 const sofascore_login = "https://www.sofascore.com/user/login";
 
+export let browser;
+
 export async function enterAccount() {
-  const browser = await pup.launch({ headless: false})
-  const page = await browser.newPage()
+  browser = await pup.launch({ headless: false})
+  let loginPage = await browser.newPage()
 
-  await page.goto(sofascore_login)
+  await loginPage.goto(sofascore_login)
 
-  const buttonFacebookLog = await page.$('button[cursor="pointer"][d="block"][display="flex"].sc-hLBbgP.sc-eDvSVe.dWoFsA.fRddxb');
+  const buttonFacebookLog = await loginPage.waitForSelector('button[cursor="pointer"][d="block"][display="flex"].sc-hLBbgP.sc-eDvSVe.dWoFsA.fRddxb', { visible: true });
   await buttonFacebookLog.click();
 
   const popupTarget = await browser.waitForTarget(target => target.url().includes('facebook.com'));
@@ -31,6 +32,6 @@ export async function enterAccount() {
   await loginButton.click();
 
   await popupPage.close()
-  await page.close()
 }
+
 
