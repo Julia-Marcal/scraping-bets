@@ -1,5 +1,6 @@
-import { bestLeagues } from './Leagues'
-import { enterAccount } from './enterAccount'
+import { bestLeagues } from './ScrappingScripts/Leagues'
+import { enterAccount } from './ScrappingScripts/enterAccount'
+import { bestGames } from './ScrappingScripts/Games'
 
 const allowed_leagues: string[] = [
   'Brasileiro Série A',
@@ -18,7 +19,8 @@ const allowed_leagues: string[] = [
 async function run() {
   await enterAccount()
   await Promise.all([
-    await bestLeagues(allowed_leagues)
+    await bestLeagues(allowed_leagues),
+    await bestGames(allowed_leagues)
   ])
 }
 run()
