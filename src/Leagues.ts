@@ -1,26 +1,27 @@
 const pup = require('puppeteer')
+import { browser } from './enterAccount'
 
 const sofascore_home = "https://www.sofascore.com/";
 
-export async function bestGames( allowed_leagues: string[]) {
-  const browser = await pup.launch({ headless: false})
-  const page = await browser.newPage()
+export async function bestLeagues( allowed_leagues: string[]) {
+  const mainPageTarget = await browser.waitForTarget(target => target.url().includes('sofascore.com'));
+  let mainPage = await mainPageTarget.page();
+  await mainPage.goto(sofascore_home);
 
-  await page.goto(sofascore_home)
-  await page.waitForSelector('div.sc-bqWxrE.eljiF')
-  const leagues = await page.$$('div.sc-bqWxrE.eljiF');
+  await mainPage.waitForSelector('div.sc-bqWxrE.eljiF');
+  const leagues = await mainPage.$$('div.sc-bqWxrE.eljiF');
 
   const innerTexts: string[] = await Promise.all(
     leagues.map(async (league) => {
-      const innerText = await page.evaluate(el => el.innerText, league);
+      const innerText = await mainPage.evaluate(el => el.innerText, league);
       if(allowed_leagues.includes(innerText)){
         console.log(innerText)
         return innerText;
       }
     })
-  );
+    );
 
+  await mainPage.close()
   await browser.close()
   return innerTexts
-
 }
