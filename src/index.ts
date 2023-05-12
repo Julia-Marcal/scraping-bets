@@ -1,6 +1,6 @@
-import { bestLeagues } from './ScrappingScripts/Leagues'
-import { enterAccount } from './ScrappingScripts/enterAccount'
-import { bestGames } from './ScrappingScripts/AllGames'
+import { bestLeagues } from './ScrapingScripts/Leagues'
+import { enterAccount } from './ScrapingScripts/enterAccount'
+import { bestGames } from './ScrapingScripts/AllGames'
 
 const allowed_leagues: string[] = [
   'Brasileiro Série A',
