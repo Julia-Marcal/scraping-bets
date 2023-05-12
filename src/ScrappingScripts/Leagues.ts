@@ -14,7 +14,6 @@ export async function bestLeagues( allowed_leagues: string[]) {
     leagues.map(async (league) => {
       const innerText = await mainPage.evaluate(el => el.innerText, league);
       if(allowed_leagues.includes(innerText)){
-        console.log(innerText)
         return innerText;
       }
     })
