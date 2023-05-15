@@ -6,7 +6,7 @@ const sofascore_login = "https://www.sofascore.com/user/login";
 export let browser;
 
 export async function enterAccount() {
-  browser = await pup.launch({ headless: false})
+  browser = await pup.launch({ headless: false, timeout: 0})
   let loginPage = await browser.newPage()
 
   await loginPage.goto(sofascore_login)

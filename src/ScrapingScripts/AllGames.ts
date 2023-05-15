@@ -5,6 +5,7 @@ const sofascore_game = "https://www.sofascore.com";
 export async function bestGames(allowed_leagues: string[]) {
   const mainPageTeam = await browser.waitForTarget(target => target.url().includes('sofascore.com'));
   let mainPage = await mainPageTeam.page();
+  await mainPage.setDefaultNavigationTimeout(0);
 
   const games = await mainPage.$$('.sc-hLBbgP.dRtNhU a[class^="sc-29ae2005-0 exLNMv"]');
 
@@ -31,8 +32,6 @@ export async function bestGames(allowed_leagues: string[]) {
       allowed_games.push(links[j])
     }
   }
-
-  await browser.close();
 
   return allowed_games
 }
