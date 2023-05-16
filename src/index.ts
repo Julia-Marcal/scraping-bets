@@ -17,15 +17,18 @@ const allowed_leagues: string[] = [
   'UEFA Europa Conference League'
 ]
 
+const sofascore_home = "https://www.sofascore.com/";
+
 let allowed_games;
 let scraped_games;
 
-async function run() {
+async function scrapingBestGames() {
   await enterAccount()
+
   await Promise.all([
-    await bestLeagues(allowed_leagues),
+    await bestLeagues(allowed_leagues, sofascore_home),
     allowed_games = await bestGames(allowed_leagues),
     scraped_games = await ScrapingAllowedGames(allowed_games),
   ])
 }
-run()
+scrapingBestGames()
