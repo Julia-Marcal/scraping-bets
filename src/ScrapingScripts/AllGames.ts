@@ -16,7 +16,6 @@ export async function bestGames(allowed_leagues: string[]) {
     })
   );
 
-  const links = [];
   const allowed_games = []
 
   for (let i = 0; i < hrefs.length; i++) {
@@ -24,14 +23,11 @@ export async function bestGames(allowed_leagues: string[]) {
     await mainPage.goto(sofascore_game + href);
     const leagueElement = await mainPage.$('.sc-bqWxrE.bktcYk');
     const LeagueOfGame = await mainPage.evaluate(el => el.innerText, leagueElement);
-    links.push({ link: href, league: LeagueOfGame });
-  }
-
-  for (let j = 0; j < links.length; j++) {
-    if (allowed_leagues.includes(links[j].league)){
-      allowed_games.push(links[j])
+    if(allowed_leagues.includes(LeagueOfGame)){
+      allowed_games.push({ link: href, league: LeagueOfGame });
     }
   }
 
+  console.log(allowed_games)
   return allowed_games
 }

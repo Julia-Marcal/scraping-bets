@@ -24,7 +24,5 @@ export async function ScrapingAllowedGames(allowed_games:  string[]) {
     games.push({ game: TeamsOnGameText, FirstTeam: FirstOdd, Tie: TieOdd, SecondTeam: SecondOdd });
   }
 
-  console.log(games)
-
   await browser.close();
 }
