@@ -1,7 +1,7 @@
-import { bestLeagues } from './ScrapingScripts/Leagues'
-import { enterAccount } from './ScrapingScripts/enterAccount'
-import { bestGames } from './ScrapingScripts/AllGames'
-import { ScrapingAllowedGames } from './ScrapingScripts/AllowedGames'
+import { bestLeagues } from './ScrapingScripts/Sofascore/Leagues'
+import { enterAccount } from './ScrapingScripts/Sofascore/enterAccount'
+import { bestGames } from './ScrapingScripts/Sofascore/AllGames'
+import { ScrapingAllowedGames } from './ScrapingScripts/Sofascore/AllowedGames'
 
 const allowed_leagues: string[] = [
   'Brasileiro Série A',
@@ -17,14 +17,15 @@ const allowed_leagues: string[] = [
   'UEFA Europa Conference League'
 ]
 
-let allowed_games = [];
+let allowed_games;
+let scraped_games;
 
 async function run() {
   await enterAccount()
   await Promise.all([
     await bestLeagues(allowed_leagues),
     allowed_games = await bestGames(allowed_leagues),
-    await ScrapingAllowedGames(allowed_games)
+    scraped_games = await ScrapingAllowedGames(allowed_games),
   ])
 }
 run()

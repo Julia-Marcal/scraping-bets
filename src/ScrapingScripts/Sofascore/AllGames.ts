@@ -16,7 +16,7 @@ export async function bestGames(allowed_leagues: string[]) {
     })
   );
 
-  const allowed_games = []
+  const scraped_games = []
 
   for (let i = 0; i < hrefs.length; i++) {
     const href = hrefs[i];
@@ -24,10 +24,9 @@ export async function bestGames(allowed_leagues: string[]) {
     const leagueElement = await mainPage.$('.sc-bqWxrE.bktcYk');
     const LeagueOfGame = await mainPage.evaluate(el => el.innerText, leagueElement);
     if(allowed_leagues.includes(LeagueOfGame)){
-      allowed_games.push({ link: href, league: LeagueOfGame });
+      scraped_games.push({ link: href, league: LeagueOfGame });
     }
   }
 
-  console.log(allowed_games)
-  return allowed_games
+  return scraped_games
 }
