@@ -25,4 +25,5 @@ export async function ScrapingAllowedGames(allowed_games:  string[]) {
   }
 
   await browser.close();
+  return games
 }

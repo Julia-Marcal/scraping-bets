@@ -1,11 +1,10 @@
 import { browser } from './enterAccount'
 
-const sofascore_home = "https://www.sofascore.com/";
 
-export async function bestLeagues( allowed_leagues: string[]) {
+export async function bestLeagues( allowed_leagues: string[], sofascore_link) {
   const mainPageTarget = await browser.waitForTarget(target => target.url().includes('sofascore.com'));
   let mainPage = await mainPageTarget.page();
-  await mainPage.goto(sofascore_home);
+  await mainPage.goto(sofascore_link);
 
   await mainPage.waitForSelector('div.sc-bqWxrE.eljiF');
   const leagues = await mainPage.$$('div.sc-bqWxrE.eljiF');
