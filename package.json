@@ -7,8 +7,7 @@
   "author": "Julia-Marcal <anajulia.05marcal@gmail.com>",
   "license": "Apache License 2.0",
   "scripts": {
-    "dev": "ts-node src/index.ts",
-    "start": "ts-node src/browser.ts"
+    "dev": "ts-node src/index.ts"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
