@@ -23,7 +23,17 @@ export async function bestGames(allowed_leagues: string[]) {
     await mainPage.goto(sofascore_game + href);
     const leagueElement = await mainPage.$('.sc-bqWxrE.bktcYk');
     const LeagueOfGame = await mainPage.evaluate(el => el.innerText, leagueElement);
+
+    //Checking Country of League
+    //Algebria League has the same name as french league
+    const CountryElements = await mainPage.$$('ul.sc-7f0dfe57-0.jIuhdu li');
+    const CountryLiElements = CountryElements[1];
+    const CountryText = await mainPage.evaluate(element => element.innerText, CountryLiElements);
+    
     if(allowed_leagues.includes(LeagueOfGame)){
+      if(LeagueOfGame == 'Ligue 1' && CountryText !== 'France'){
+        break
+      }
       scraped_games.push({ link: href, league: LeagueOfGame });
     }
   }
